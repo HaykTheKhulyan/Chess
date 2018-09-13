@@ -1,25 +1,50 @@
 #include <SFML/Graphics.hpp>
 
+void initializeBoard(sf::Sprite &board, sf::Texture &boardTexture, sf::RectangleShape &boardBorder);
+
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1200, 800), "Chess", sf::Style::Close | sf::Style::Titlebar);
 
-	sf::Texture boardTexture;
-	boardTexture.loadFromFile("Resources/board.png");
-	
 	sf::Sprite board;
-	board.setTexture(boardTexture);
-	board.setPosition(sf::Vector2f(100.0f, 100.0f));
-	board.setScale(1.27118644f, 1.27118644f);
-
+	sf::Texture boardTexture;
 	sf::RectangleShape boardBorder;
-	boardBorder.setSize(sf::Vector2f(600.0f, 600.0f));
-	boardBorder.setOrigin(sf::Vector2f(boardBorder.getSize().x / 2, boardBorder.getSize().y / 2));
-	boardBorder.setFillColor(sf::Color::Transparent);
-	boardBorder.setOutlineThickness(4.0f);
-	boardBorder.setOutlineColor(sf::Color::Black);
-	//debugging
-	//sf::Vector2f var1 = sf::Vector2f(board.getPosition() + sf::Vector2f(600.0f, 600.0f));
-	boardBorder.setPosition(sf::Vector2f(400.0f, 400.0f));
+
+
+	initializeBoard(board, boardTexture, boardBorder);
+
+
+
+	
+	/* Move these into the initialize function
+	sf::Texture pawn1Texture;
+	sf::Texture pawn2Texture;
+	sf::Texture knight1Texture;
+	sf::Texture knight2Texture;
+	sf::Texture bishop1Texture;
+	sf::Texture bishop2Texture;
+	sf::Texture rook1Texture;
+	sf::Texture rook2Texture;
+	sf::Texture queen1Texture;
+	sf::Texture queen2Texture;
+	sf::Texture king1Texture;
+	sf::Texture king2Texture;
+
+	pawn1Texture.loadFromFile("Resources/pawn1.png");
+	pawn2Texture.loadFromFile("Resources/pawn2.png");
+	knight1Texture.loadFromFile("Resources/knight1.png");
+	knight2Texture.loadFromFile("Resources/knight2.png");
+	bishop1Texture.loadFromFile("Resources/bishop1.png");
+	bishop2Texture.loadFromFile("Resources/bishop2.png");
+	rook1Texture.loadFromFile("Resources/rook1.png");
+	rook2Texture.loadFromFile("Resources/rook2.png");
+	queen1Texture.loadFromFile("Resources/queen1.png");
+	queen2Texture.loadFromFile("Resources/queen2.png");
+	king1Texture.loadFromFile("Resources/king1.png");
+	king2Texture.loadFromFile("Resources/king2.png");
+
+	*/
+
+
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
@@ -47,4 +72,19 @@ int main() {
 		window.display();
 	}
 	return 0;
+}
+
+void initializeBoard(sf::Sprite &board, sf::Texture &boardTexture, sf::RectangleShape &boardBorder) {
+	boardTexture.loadFromFile("Resources/board.png");
+
+	board.setTexture(boardTexture);
+	board.setPosition(sf::Vector2f(100.0f, 100.0f));
+	board.setScale(1.27118644f, 1.27118644f);
+
+	boardBorder.setSize(sf::Vector2f(600.0f, 600.0f));
+	boardBorder.setOrigin(sf::Vector2f(boardBorder.getSize().x / 2, boardBorder.getSize().y / 2));
+	boardBorder.setFillColor(sf::Color::Transparent);
+	boardBorder.setOutlineThickness(4.0f);
+	boardBorder.setOutlineColor(sf::Color(170, 100, 39));
+	boardBorder.setPosition(sf::Vector2f(400.0f, 400.0f));
 }
